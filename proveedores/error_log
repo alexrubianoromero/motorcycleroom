@@ -1,0 +1,13 @@
+[19-Oct-2015 05:35:12 America/Bogota] PHP Warning:  mysql_connect() [<a href='function.mysql-connect.html'>function.mysql-connect.html</a>]: Access denied for user 'root'@'localhost' (using password: YES) in /home/alexrubi/public_html/taller/valotablapc.php on line 27
+[19-Oct-2015 05:35:12 America/Bogota] PHP Warning:  mysql_select_db() expects parameter 2 to be resource, boolean given in /home/alexrubi/public_html/taller/valotablapc.php on line 28
+[19-Oct-2015 05:35:12 America/Bogota] PHP Warning:  mysql_query() expects parameter 2 to be resource, boolean given in /home/alexrubi/public_html/taller/empresa.php on line 5
+[19-Oct-2015 05:35:12 America/Bogota] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, null given in /home/alexrubi/public_html/taller/empresa.php on line 6
+[19-Oct-2015 05:36:20 America/Bogota] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/alexrubi/public_html/taller/empresa.php on line 6
+[19-Oct-2015 05:36:26 America/Bogota] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/alexrubi/public_html/taller/empresa.php on line 6
+[19-Oct-2015 05:37:32 America/Bogota] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/alexrubi/public_html/taller/empresa.php on line 6
+[19-Oct-2015 05:37:56 America/Bogota] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/alexrubi/public_html/taller/empresa.php on line 6
+[19-Oct-2015 05:39:00 America/Bogota] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/alexrubi/public_html/taller/empresa.php on line 6
+[21-Mar-2018 21:39:05 UTC] PHP Deprecated:  mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in /home/ctwtvsxj/public_html/motorcycleroom/valotablapc.php on line 48
+[21-Feb-2019 20:41:12 UTC] PHP Deprecated:  mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in /home/ctwtvsxj/public_html/motorcycleroom/valotablapc.php on line 48
+[21-Feb-2019 20:41:57 UTC] PHP Deprecated:  mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in /home/ctwtvsxj/public_html/motorcycleroom/valotablapc.php on line 48
+[19-Nov-2021 23:17:18 UTC] PHP Deprecated:  mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in /home/ctwtvsxj/public_html/motorcycleroom123/valotablapc.php on line 48
