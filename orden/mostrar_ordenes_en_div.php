@@ -83,6 +83,7 @@ $consulta_ordenes = mysql_query($sql_muestre_ordenes,$conexion);
 	echo  '<td><h3>Tecnico</h3></td>';
 	echo  '<td><h3>modificar_honda</h3></td>';
 	echo '<td><h3>Vista Impresion</h3></td>'; 
+	echo '<td><h3>Vista Imp Anterior</h3></td>'; 
 		 //echo '<td><h3>Ver Pre Forma</h3></td>'; 
 	
 	echo '<tr>';
@@ -123,10 +124,14 @@ $consulta_ordenes = mysql_query($sql_muestre_ordenes,$conexion);
 		
 				
 					echo '<td><h3><a href="orden_modificar_honda.php?idorden='.$ordenes['0'].'"  target = "_blank">Modificar_Orden</a></h3></td>';
+					echo '<td><h3>
+					<a target="_blank" href="pdf/ordenPdf3.php?idOrden='.$ordenes['0'].'">PdfOrden</a>
+					</h3></td>';
 					echo '<td><h3><a href="orden_imprimir_honda_cero_sin_sesion.php?idorden='.$ordenes['0'].'"  target = "_blank">Imprimir_Orden</a></h3></td>';
 					
 					echo '</h3></td>'; 
-				echo '<tr>';
+					echo '<tr>';
+					// <a href="orden_imprimir_honda_cero_sin_sesion.php?idorden='.$ordenes['0'].'"  target = "_blank">Imprimir_Orden</a>
 			}
 echo '<table border= "1">';
 

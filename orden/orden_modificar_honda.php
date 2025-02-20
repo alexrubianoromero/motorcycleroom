@@ -352,7 +352,8 @@ include('../colocar_links2.php');
       <tr>
         <td align="center"><h3>
         <button id="enviar_correo_items_123">Enviar Correo con Link de Orden</button>
-        <button id="generarPdfOrden();">Generar Pdf Orden</button>
+        <!-- <button onclick="generarPdfOrden();";>Generar Pdf Orden</button> -->
+		<a target="_blank" href="pdf/ordenPdf3.php?idOrden=<? echo $_REQUEST['idorden']; ?>">GENERAR PDF DE ORDEN</a>
        <!--   
         <input name="enviar_correo" id="enviar_correo" type="checkbox" value="1" id = "enviar_correo" >
         <label  for ="enviar_correo" >Enviar Correo Nuevamente</label></h3></td>
@@ -473,7 +474,32 @@ function busque_estado($tabla26,$id_estado,$id_empresa,$conexion)
 <script src="../js/jquery-2.1.1.js"></script>   
 
 <script language="JavaScript" type="text/JavaScript">
-            
+
+            //  function generarPdfOrden()
+			//  {
+			// 	alert('generar pdf ');
+
+			//  }
+			//  function generarPdfOrden(idOrden)
+			// {
+			// 	//  alert('funcion javascript');
+			// 	// var idCliente = document.getElementById('idCliente').value;
+			// 	const http=new XMLHttpRequest();
+			// 	const url = 'clientes/clientes.php';
+			// 	http.onreadystatechange = function(){
+
+			// 		if(this.readyState == 4 && this.status ==200){
+			// 			document.getElementById("div_resultados_clientes").innerHTML  = this.responseText;
+			// 		}
+			// 	};
+			// 	http.open("POST",url);
+			// 	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			// 	http.send('opcion=listarClienteFiltrado'
+			// 			+'&idCliente='+idCliente
+
+			// 	);
+			// }
+
 			$(document).ready(function(){
                
 						//////////////////

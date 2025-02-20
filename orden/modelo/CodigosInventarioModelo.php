@@ -1,0 +1,171 @@
+<?php
+$raiz = dirname(dirname(dirname(__file__)));
+
+require_once($raiz.'/conexion/Conexion.php');
+
+    class CodigosInventarioModelo extends Conexion
+    {
+        public function __construct(){
+         
+        }
+
+       public function getInfoCode($codigo,$conexion)
+        {
+            $sql = "select * from productos where codigo = '".$codigo."'  ";
+        }
+        public function traerIdCodeConCode($code)
+        {
+            $sql ="select id_codigo from productos   where codigo_producto = '".$code."'  ";
+            $consulta = mysql_query($sql,$this->connectMysql());
+            $arrCodigo = mysql_fetch_assoc($consulta);
+            $id_codigo = $arrCodigo['id_codigo']; 
+            return $id_codigo; 
+        }
+
+        
+    public function verifiqueCodigoSiExiste($codigo)
+    {
+        $conexion = $this->connectMysql();
+        $sql = "select * from productos where codigo_producto = '".$codigo."' limit 1 "; 
+        $consulta = mysql_query($sql,$conexion);
+        $filas = mysql_num_rows($consulta);
+        if($filas > 0)
+        {
+            $arregloCodigo = mysql_fetch_assoc($consulta); 
+            $result['filas'] = $filas;
+            $result['data'] = $arregloCodigo;
+        }else{
+            $result['filas'] = 0;
+            $result['data'] = '';
+        }  
+        return $result;
+    }
+
+
+        public function mostrarCodigosInventarios(){
+            $conexion = $this->connectMysql();
+            $sql = "select * from productos order by id_codigo desc ";
+            $consulta = mysql_query($sql,$conexion);
+            
+            return $consulta; 
+        } 
+        
+        public function getInfoCodeById($id)
+        {
+            $conexion = $this->connectMysql();
+            $sql = "select * from productos where id_codigo = '".$id."'   ";
+            // die($sql); 
+            $consulta = mysql_query($sql,$conexion);
+            $infoCode = mysql_fetch_assoc($consulta);
+            return $infoCode; 
+            
+        }
+        public function getInfoCodeFiltros($request)
+        {
+            $conexion = $this->connectMysql();
+            $sql = "select * from productos where 1=1 ";
+            if($request['referencia'] != '' )
+            {
+               $sql .= "  and referencia like '%".$request['referencia']."%'   ";
+            }
+            
+            if($request['descripcion'] != '' )
+            {
+               $sql .= "  and descripcion like '%".$request['descripcion']."%'   ";
+            }
+            // die($sql); 
+            $consulta = mysql_query($sql,$conexion);
+            return $consulta; 
+        }
+
+
+        public function saveCode($request){
+            $conexion = $this->connectMysql();
+            $sql = "insert into productos (codigo_producto,descripcion,cantidad,cantidad_inicial,
+                    precio_compra,valorventa,valor_unit,repman,referencia,producto_minimo,alerta)   
+            values ('".$request['codigo']."'
+            ,'".$request['descripcion']."'
+            ,'".$request['cantidad']."'
+            ,'".$request['cantidad']."'
+            ,'".$request['precioCompra']."'
+            ,'".$request['precioVenta']."'
+            ,'".$request['precioCompra']."'
+            ,'".$request['tipoCod']."'
+            ,'".$request['referencia']."'
+            ,'".$request['cantidadMinima']."'
+            ,'".$request['alerta']."'
+            
+            )";
+            // die($sql); 
+            $consulta = mysql_query($sql,$conexion);
+            echo 'Codigo Grabado'; 
+        }
+
+        public function saveMoreLessInvent($request)
+        {
+            $infoCode = $this->getInfoCodeById($request['id']);
+            // echo 'desde el modelo<pre>'; 
+            // print_r($infoCode);
+            // echo '</pre>';
+            // die();
+            $conexion = $this->connectMysql();
+            $infoActual = $this->getInfoCodeById($request['id']);
+            if($request['tipo']==1 || $request['tipo']==3 ){
+                $saldo = $infoActual['cantidad'] +  $request['cantidad'];
+            }
+            if($request['tipo']==2 || $request['tipo']==4 )
+            {
+                $saldo = $infoActual['cantidad'] -  $request['cantidad'];
+            }
+
+            $sql = "update productos set cantidad = '".$saldo ."' 
+            where id_codigo = '".$request['id']."'   "; 
+            // die($sql);
+    
+            $consulta = mysql_query($sql,$conexion);   
+
+            echo 'Saldo actualizado !!!!'; 
+        }
+
+        function codigosConAlertaInventario()
+        {
+            $sql = "select codigo_producto as COD,referencia as REF, cantidad as CANT from productos 
+            where 1=1 
+            and alerta = 'SI'
+            and cantidad = producto_minimo";
+            $consulta = mysql_query($sql,$this->connectMysql()); 
+            $codigosAlerta = $this->get_table_assoc($consulta); 
+            // echo 'desde el modelo<pre>'; 
+            // print_r($sql);
+            // echo '</pre>';
+            // die();
+            return $codigosAlerta;
+        }
+
+        public function actualizarCodigo($request)
+        {
+                $sql = "
+                update productos set 
+                descripcion = '".$request['descripcion']."'
+                ,precio_compra = '".$request['precioCompra']."'
+                ,valor_unit = '".$request['precioCompra']."'
+                ,valorventa = '".$request['precioVenta']."'
+                ,repman = '".$request['tipoCod']."'
+                ,referencia = '".$request['referencia']."'
+                ,producto_minimo = '".$request['cantidadMinima']."'
+                ,alerta = '".$request['alerta']."'
+                where id_codigo = '".$request['idCodigo']."'
+                ";
+                $consulta = mysql_query($sql,$this->connectMysql()); 
+                // die($sql);
+
+                echo 'Producto Actualizado';
+
+        }
+
+    }
+
+
+
+
+?>

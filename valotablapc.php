@@ -39,7 +39,10 @@ $nombrebase = "base_motorcycleroom";
 
 
 
-
+$servidor = "localhost";
+$usuario = "ctwtvsxj_admin";
+$clave  = "ElMejorProgramador***";
+$nombrebase = "ctwtvsxj_base_motorcycleroom";
 
 
 $conexion =mysql_connect($servidor,$usuario,$clave);
