@@ -25,7 +25,7 @@ require_once($ruta.'/valotablapc.php');
 function traerOrdenId($id,$conexion){
     $sql = " SELECT o.orden,o.fecha,cli.telefono,o.kilometraje,o.observaciones,t.nombre as mecanico,o.id 
              ,o.estado,o.mecanico as idmecanico,cli.nombre as nombrecli, o.placa,
-             cli.email as email
+             cli.email as email,o.descripEntregaFinal
              FROM ordenes o 
              LEFT JOIN carros c on c.placa = o.placa
              LEFT JOIN cliente0 cli on cli.idcliente = c.propietario 
@@ -204,7 +204,15 @@ $pdf->AddPage();
     $pdf->Cell(22,6,'',1,0,'C');
     $pdf->Cell(20,6,'Subtotal: ',1,0,'C');
     $pdf->Cell(22,6,number_format($suma, 0, ',', '.'),1,1,'R');
-    
+
+    $pdf->Ln(5);
+    $pdf->Cell(5);
+    $pdf->SetFont('Arial','B',9);
+    $pdf->Cell(164,6,'DESCRIPCION ENTREGA FINAL',1,1,'C');
+    $pdf->SetFont('Arial','',9);
+    $pdf->Cell(5);
+    $pdf->MultiCell(164,6,$datoOrden['descripEntregaFinal'],1,1,'j');
+    $pdf->Ln(5);
     $pdf->Cell(5);
     $pdf->MultiCell(180,6,'                                                     Av Cll 80 No 22-59   Cel 3105387544',0,1,'C');
     $pdf->Ln(5);

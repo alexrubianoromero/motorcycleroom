@@ -13,6 +13,7 @@ $sql_placas = "select cli.nombre as nombrecli,cli.identi as clidenti,cli.direcci
  o.fecha,o.observaciones,o.radio,o.antena,o.repuesto,o.herramienta,o.otros,o.iva as iva ,o.orden,o.kilometraje,o.mecanico,o.id,
  e.identi,e.telefonos as telefonos_empresa ,e.direccion as direccion_empresa,o.kilometraje_cambio,e.tipo_taller,cli.email,e.condiciones_orden,
  o.fecha_entrega, o.fecha_salida , e.email_empresa,e.razon_social,o.abono,cli.entidad,car.sigla
+  ,o.descripEntregaFinal 
 from $tabla4 as car
 inner join $tabla3 as cli on (cli.idcliente = car.propietario)
 inner join $tabla14 as o  on (o.placa = car.placa)
@@ -248,6 +249,22 @@ $subtotal_mano_obra_iva  = ($subtotal_mano_obra*$datos_orden['iva'])/100;
     <td align = "right"><?php  echo number_format($gran_total_final, 0, ',', '.') ?></td>
   </tr>
 </table>
+<br>
+<table width="95%" border="0">
+<tr>
+	<td>
+	   <td> DESCRIPCION ENTREGA FINAL </td>
+	</td>
+</tr>
+<tr>
+	<td>
+	   <td> <?php  echo $datos_orden['descripEntregaFinal'] ?></td>
+	</td>
+</tr>
+</table>
+<br>
+
+
 <table width="95%" border="0">
   <tr>
     <td align = "center"><?php echo 'Nota: '.$datos_orden['condiciones_orden'];  ?></td>

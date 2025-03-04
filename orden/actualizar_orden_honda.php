@@ -79,6 +79,7 @@ iva = '".$_POST['iva']."'
 ,formapago = '".$_POST['formapago']."'
 ,comercial = '".$_POST['comercial']."'  
 ,cotiza = '".$_POST['valor_estimado']."'  
+,descripEntregaFinal = '".$_POST['descripEntregaFinal']."'  
 ";
 
 if($_POST['checkbox_pagada']==1)
@@ -87,7 +88,7 @@ if($_POST['checkbox_pagada']==1)
 $sql_actualizar_orden .= " where id = '".$_POST['id_orden']."'
 ";
 
-echo '<br>'.$sql_actualizar_orden;
+// echo '<br>'.$sql_actualizar_orden;
 //exit();
 
 $consulta_grabar = mysql_query($sql_actualizar_orden,$conexion); 
@@ -146,11 +147,11 @@ if ($_POST['enviar_correo'] > 0)
 /////////////////////
 $body = '
 
-¡MOTORCYCLE ROOM!
+ï¿½MOTORCYCLE ROOM!
 
-De antemano queremos agradecer tu confianza en nosotros, y en respuesta a ello hemos dispuesto de los mejores técnicos, insumos y experiencia, para satisfacer completamente tus requerimientos hacia nuestro servicio. 
+De antemano queremos agradecer tu confianza en nosotros, y en respuesta a ello hemos dispuesto de los mejores tï¿½cnicos, insumos y experiencia, para satisfacer completamente tus requerimientos hacia nuestro servicio. 
 
-Hemos creado una orden con la siguiente información.
+Hemos creado una orden con la siguiente informaciï¿½n.
 
 
 Placa: '.$_REQUEST['placa'].' Orden Numero : '.$_REQUEST['orden_numero'].' 
@@ -163,7 +164,7 @@ MOTORCYCLE ROOM
 Taller Multimarca 
 3142536548 
 
-O envíanos un E-mail a motorcycleroom@gmail.com <br>
+O envï¿½anos un E-mail a motorcycleroom@gmail.com <br>
 Recuerda, estamos ubicados en la Av. calle 80 20c- 49.
 ';
 
@@ -191,7 +192,7 @@ MOTORCYCLE ROOM
 Taller Multimarca 
 3142536548 
 
-O envíanos un E-mail a motorcycleroom@gmail.com <br>
+O envï¿½anos un E-mail a motorcycleroom@gmail.com <br>
 Recuerda, estamos ubicados en la Av. calle 80 20c- 49.
 	';
 	//echo '<br>Se enviara el correo de que esta lista <br>';
@@ -219,7 +220,7 @@ MOTORCYCLE ROOM
 Taller Multimarca 
 3142536548 
 
-O envíanos un E-mail a motorcycleroom@gmail.com <br>
+O envï¿½anos un E-mail a motorcycleroom@gmail.com <br>
 Recuerda, estamos ubicados en la Av. calle 80 20c- 49.
 	';
 	//echo '<br>Se enviara el correo de que esta lista <br>';

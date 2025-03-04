@@ -70,14 +70,16 @@ $consulta_operarios =  mysql_query($sql_operarios,$conexion);
 $sql_placas = "select cli.nombre,cli.identi as clidenti,cli.direccion as direccioncli,cli.telefono as telefonocli, cli.email as emailcli,
 car.placa,car.marca,car.modelo,car.color,car.tipo,
  o.fecha,o.observaciones,o.radio,o.antena,o.repuesto,o.herramienta,o.otros,o.iva as iva ,o.orden,o.kilometraje,o.mecanico,o.id,
- e.identi,e.telefonos as telefonos_empresa ,e.direccion as direccion_empresa,o.kilometraje_cambio,e.tipo_taller,o.fecha_entrega,o.abono,o.estado 
+ e.identi,e.telefonos as telefonos_empresa ,e.direccion as direccion_empresa,o.kilometraje_cambio,e.tipo_taller,o.fecha_entrega,o.abono,o.estado
+ ,o.descripEntregaFinal 
 from $tabla4 as car
 inner join $tabla3 as cli on (cli.idcliente = car.propietario)
 inner join $tabla14 as o  on (o.placa = car.placa)
 inner join $tabla10 as e on  (e.id_empresa = o.id_empresa) 
  where o.id = '".$_REQUEST['idorden']."'   and   o.id_empresa = '".$_SESSION['id_empresa']."'  and o.estado < 20 ";
  
- //echo '<br>'.$sql_placas;
+// echo '<br>'.$sql_placas;
+// die();
 $datos = mysql_query($sql_placas,$conexion);
 $filas = mysql_num_rows($datos); 
 if ($filas == 0 ) 
@@ -91,6 +93,12 @@ else
 //echo '<br>filas =='.$filas;
 
  $datos = get_table_assoc($datos); 
+
+
+// echo '<pre>';
+// print_r($datos);
+// echo '</pre>';
+// die();
 
 //echo '<br>mecanico'.$datos[0]['mecanico'];
 //$id_orden['id']
@@ -348,6 +356,23 @@ include('../colocar_links2.php');
 	 </td>
 	</tr>
 	</table>
+	<br>
+	<div >
+		<table width = "75%" border="1"  style="background-color:#c0c0c0;">
+			<tr>
+				<td align="center">DESCRIPCION ENTREGA FINAL</td>
+			</tr>
+			<tr>
+				<td align="center" >
+					
+			<textarea  id="descripEntregaFinal" cols="120" rows="4">
+				<?php echo $datos[0]['descripEntregaFinal']   ?>
+			</textarea>
+				</td>
+			</tr>
+		</table>		
+	</div>
+	<br>
 	<table width = "75%" border="1">
       <tr>
         <td align="center"><h3>
@@ -580,6 +605,7 @@ function busque_estado($tabla26,$id_estado,$id_empresa,$conexion)
 							data += '&estado=' + $("#estado").val();
 							data += '&ultimo_estado=' + $("#ultimo_estado").val();
 							data += '&enviar_correo=' + $("#enviar_correo:checked").val();
+							data += '&descripEntregaFinal=' + $("#descripEntregaFinal").val();
 
 							$.post('actualizar_orden_honda.php',data,function(a){
 							//$(window).attr('location', '../index.php);
