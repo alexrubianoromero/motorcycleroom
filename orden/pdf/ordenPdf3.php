@@ -119,9 +119,11 @@ $pdf->AddPage();
     $pdf->Cell(134);
     $pdf->Cell(35,8,$datoOrden['fecha'],1,1,'C');
 
-    
+     $pdf->Image('../../logos/motocroquis2.png',30,50,150);
+
+
     $pdf->SetFont('Arial','B',10);
-    $pdf->Ln(15);
+    $pdf->Ln(45);
     $pdf->Cell(5);
     
     $pdf->Cell(40,6,'Cliente',1,0,'C');

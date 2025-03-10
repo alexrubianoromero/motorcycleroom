@@ -108,6 +108,13 @@ else {
   </tr>
 </table>
 
+<table width="95%" border="1">
+<tr>
+	<td align="center">
+		<img src="../logos/motocroquis2.png" width="80%">
+	</td>
+</tr>
+</table>
 
 <table width="95%" border="1">
   <tr>
