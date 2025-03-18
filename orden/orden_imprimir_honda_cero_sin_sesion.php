@@ -12,6 +12,7 @@ $sql_placas = "select cli.nombre as nombrecli,cli.identi as clidenti,cli.direcci
  o.fecha,o.observaciones,o.radio,o.antena,o.repuesto,o.herramienta,o.otros,o.iva as iva ,o.orden,o.kilometraje,o.mecanico,o.id,
  e.identi,e.telefonos as telefonos_empresa ,e.direccion as direccion_empresa,o.kilometraje_cambio,e.tipo_taller,cli.email,e.condiciones_orden,
  o.fecha_entrega, o.fecha_salida , e.email_empresa,e.razon_social,o.abono,cli.entidad,car.sigla
+ ,o.descripEntregaFinal
 from $tabla4 as car
 inner join $tabla3 as cli on (cli.idcliente = car.propietario)
 inner join $tabla14 as o  on (o.placa = car.placa)
@@ -21,11 +22,13 @@ inner join $tabla10 as e on  (e.id_empresa = o.id_empresa)
 $datos = mysql_query($sql_placas,$conexion);
 $filas = mysql_num_rows($datos); 
 $datos_orden = mysql_fetch_assoc($datos);
-/*
-echo '<pre>';
-print_r($datos_orden);
-echo '</pre>';
-*/
+
+// echo '<pre>';
+// print_r($datos_orden);
+// echo '</pre>';
+// die();
+
+// die($datos_orden['descripEntregaFinal']);
 $ancho_tabla = "95%";
 
 if($datos_orden['mecanico']== '')
@@ -233,6 +236,16 @@ else {
     <td style="background-color: #9A9D9D;"  align = "right"><?php  echo number_format($gran_total_final, 0, ',', '.') ?></td>
   </tr>
 </table>
+<br>
+
+<table width="95%" border="1">
+<tr>
+<td align ="center" style="background-color: #c0c0c0;">Entrega Final</td>
+</tr>
+	<tr>
+		<td   > <?php echo $datos_orden['descripEntregaFinal'] ?></td>
+	</tr>
+</table> 
 <table width="95%" border="0">
   <tr>
     <td align = "center"><?php echo 'Nota: '.$datos_orden['condiciones_orden'];  ?></td>
